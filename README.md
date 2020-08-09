@@ -1,4 +1,4 @@
-** html-code-editor updated to v0.6 ** 
+**html-code-editor updated to v0.7** 
 <br>
 **Features**
 <br>
