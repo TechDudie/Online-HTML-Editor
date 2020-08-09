@@ -1,0 +1,384 @@
+:root {
+  --main: #f0f0f0;
+  --main-alt: #5E91ff;
+  --main-light: #5E91ff;
+  /* rgb(47, 44, 83) */
+  --text: #26252b;
+  --accent: #26252b;
+  --dynam: #f9fdff;
+  --box: #ffffff;
+  --btnhov: #d8d8d8;
+  --anim: fading;
+}
+
+::selection {
+  color: var(--main-alt);
+  background: var(--main);
+}
+
+body {
+  margin: 0 0;
+  padding: 0 0;
+  background: var(--main);
+  color: var(--text);
+  transition: 0.5s ease-in;
+}
+
+button {
+  color: var(--text);
+  background: var(--dynam);
+  border: none;
+  user-select: none;
+  margin: 1px 2px;
+  transition: 0.5s ease-in;
+}
+
+button:hover {
+  background: var(--btnhov);
+  color: var(--text);
+  margin: 0px 4px;
+}
+
+#list-function {
+  background: var(--dynam);
+  transition: 0.5s ease-in;
+}
+
+.bth {
+  color: var(--text);
+  background: var(--dynam);
+  user-select: none;
+  border-radius: 0px !important;
+  transition: 0.5s ease-in;
+}
+table {
+  width: 100%;
+  padding: 0px 0px;
+  margin: 0px 0px;  
+}
+#savmn {
+
+  background: var(--dynam);
+  border: 0.5px solid black;
+  margin: 7px 1px;
+  position: absolute;
+  z-index: 1;
+  padding: 0px 2px;
+  display: none;
+  opacity: 0;
+  animation-name: var(--anim);
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transition: 0.5s ease-in;
+  border-radius: 3px;
+}
+
+#loadmn {
+  background: var(--dynam);
+  padding: 1px 2px;
+  margin: 7px 1px;
+  border: 0.5px solid black;
+  position: absolute;
+  z-index: 1;
+  display: none;
+  opacity: 0;
+  animation-name: var(--anim);
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transition: 0.5s ease-in;
+  border-radius: 3px;
+}
+
+#settingsmen {
+  background: var(--dynam);
+  padding: 1px 2px;
+  margin: 7px 1px;
+  width: 300px;
+  height: auto;
+  border: 0.5px solid black;
+  position: absolute;
+  z-index: 2;
+  display: none;
+  opacity: 0;
+  animation-name: var(--anim);
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  float: right;
+  animation-fill-mode: forwards;
+  transition: 0.5s ease-in;
+  border-radius: 4px;
+}
+
+
+#targetCode {
+  margin: 0px 0px;
+  height: 91%;
+  background: white
+    /* Don't change: */
+  ;
+  position: absolute;
+  width:100%;
+  border: none;
+  display: block;
+  margin: 0px 10px;
+
+}
+tr {
+  margin: 5px 5px;
+
+}
+#hif {
+  background-color: white; position:absolute; z-index: 1;  height: 100%; width:45%;
+}
+.rownr {
+  overflow-y: hidden;
+  background-color: var(--main-light);
+  color: var(--dynam);
+  text-align: left;
+  vertical-align: top;
+  z-index: 0;
+  padding-right: 12px;
+  padding-left: 4px;
+  resize: none;
+  height: 91%;
+  border: none;
+  font-size: 15px;
+  user-select: none;
+  transition: 0.5s ease-in;
+}
+
+.txt {
+  margin-right: 5px;
+  z-index: 0;
+  border: none;
+  background: var(--box);
+  /* Dont change:  */
+  ;
+  height: 91%;
+  width: 45%;
+  margin-right: 10px;
+  font-size: 15px;
+  color: var(--text);
+  resize: none;
+  overflow: auto;
+  transition: 0.5s ease-in;
+}
+
+.closebtn {
+  float: left;
+  transition: 0.5s all ease-in;
+  border-radius: 2px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: block;
+  width: 36px;
+  height: 18px;
+  float: right;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--accent);
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 0.1px solid var(--btnhov);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked+.slider {
+  background-color: var(--accent);
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
+}
+
+#colorpicker {
+  display: none;
+  border: 0.5px solid black;
+  background: var(--dynam);
+  color: var(--text);
+  width: 225px;
+  padding: 10px 10px;
+  opacity: 0;
+  border-radius: 6px;
+  user-select: none;
+  animation-name: var(--anim);
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  position: absolute;
+  z-index: 1;
+  float: right;
+  animation-fill-mode: forwards;
+  transition: 0.5s ease-in;
+}
+
+i {
+  font-size: 12px;
+  margin: 15px 0px;
+  padding: 10px 10px;
+  font-family: monospace;
+}
+
+.rgbslid[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 70%;
+  height: 4px;
+  margin: 10px 15px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+}
+
+.rgbslid[input=range]:focus {
+  outline: none;
+}
+
+
+input[type=text] {
+  width: 35px;
+  background-color: var(--dynam);
+  border-radius: 3px;
+  border-color: transparent;
+  font-size: 10px;
+  color: var(--text);
+  user-select: none;
+  font-family: monospace;
+}
+
+#resultcp {
+  background-color: var(--text);
+  padding: 3px 50px;
+  margin: 5px 5px;
+  content: none;
+  border-radius: 5px;
+
+}
+
+@keyframes fading {
+  10% {
+    opacity: 0.1;
+  }
+
+  20% {
+    opacity: 0.2;
+  }
+
+  30% {
+    opacity: 0.3;
+  }
+
+  40% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  60% {
+    opacity: 0.6;
+  }
+
+  70% {
+    opacity: 0.7;
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  90% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes outo {
+  100% {
+    display: none;
+    opacity: 0.1;
+  }
+
+  90% {
+    opacity: 0.2;
+  }
+
+  80% {
+    opacity: 0.3;
+  }
+
+  70% {
+    opacity: 0.4;
+  }
+
+  60% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  40% {
+    opacity: 0.7;
+  }
+
+  30% {
+    opacity: 0.8;
+  }
+
+  20% {
+    opacity: 0.9;
+  }
+
+}
+
+@media only screen and (max-width: 790px) {
+  .txt {
+    margin-right: 0px;
+  }
+
+  button {
+    font-size: 12px;
+    margin: 0px 0px;
+  }
+}
