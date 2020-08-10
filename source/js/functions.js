@@ -1,13 +1,15 @@
-
+const content_area = "Textarea"; //dont change it , it will break the editor
+const num_add = 0;
 let startup = () => {
     check_theme()
+    check_diag()
     run_auto()
     document.getElementById("targetCode").style.display = "block";
     document.getElementById("targetCode").style.zIndex = "1";
     document.getElementById("hif").style.backgroundColor = "transparent";
 };
 let run = () => {
-  let inputz = document.getElementById('Textarea').value;
+  let inputz = document.getElementById(content_area).value;
   let iframe = document.getElementById('targetCode');
   iframe = (iframe.contentWindow) ? iframe.contentWindow : (iframe.contentDocument) ? iframe.contentDocument.document :
     iframe.contentDocument;
@@ -24,25 +26,37 @@ let run_auto = () => {
 
 }
 
-let copy = () => {
-  let textarea = document.getElementById("Textarea");
-  textarea.select();
+let copy = (idx) => {
+  let datax = document.getElementById(idx);
+  datax.select();
   document.execCommand("copy");
-  console.log('copied to clipboard')
+  msg('coppied to clipboard')
 }
 
 let engine = () => {
-  let textToSave = document.getElementById("Textarea").value;
-  let textToSaveAsBlob = new Blob([textToSave], {
+  let get_text = document.getElementById(content_area).value;
+  let get_textAsBlob = new Blob([get_text], {
     type: "text/plain"
   });
-  let textToSaveAsURL = window.URL.createObjectURL(textToSaveAsBlob);
-  let fileNameToSaveAs = document.getElementById("inputFileNameToSaveAs").value;
+  let get_textAsURL = window.URL.createObjectURL(get_textAsBlob);
+  
+  if ( document.getElementById("inputFileNameToSaveAs").value != "")
+     fileName=  document.getElementById("inputFileNameToSaveAs").value;
+  
+  else if ( document.getElementById("inputFileNameToSaveAs").value == "") {
+     fileName = "index.html";
+  }
 
+  if (get_text == ""){
+      msg('no content found , press ok or esc to save it')
+  }
+  else if (get_text != "") {
+    msg('file saved')
+  }
   let downloadLink = document.createElement("a");
-  downloadLink.download = fileNameToSaveAs;
+  downloadLink.download = fileName;
   downloadLink.innerHTML = "Download File";
-  downloadLink.href = textToSaveAsURL;
+  downloadLink.href = get_textAsURL;
   downloadLink.onclick = destroyClickedElement;
   downloadLink.style.display = "none";
   document.body.appendChild(downloadLink);
@@ -62,10 +76,14 @@ let modules = () => {
   let fileReader = new FileReader();
   fileReader.onload = function (fileLoadedEvent) {
     let textFromFileLoaded = fileLoadedEvent.target.result;
-    document.getElementById("Textarea").value = textFromFileLoaded;
+    document.getElementById(content_area).value = textFromFileLoaded;
   }
-
+  if (fileToLoad == null) {
+    msg('no file selected')
+  }
   fileReader.readAsText(fileToLoad, "UTF-8");
+  msg(`Successfully loaded  ${fileToLoad.name}`);
+
   document.getElementById('loadmn').style.display = "none";
 
 }
@@ -96,18 +114,19 @@ let selectionchanged = (obj) => {
   let substr = obj.value.substring(0, obj.selectionStart).split('\n');
   let row = substr.length;
   let col = substr[substr.length - 1].length;
-  let tmpstr = '(' + row.toString() + ',' + col.toString() + ')';
+  let tmpstr = `(${row.toString()},${col.toString()})`;
   // if selection spans over
   if (obj.selectionStart != obj.selectionEnd) {
     substr = obj.value.substring(obj.selectionStart, obj.selectionEnd).split('\n');
     row += substr.length - 1;
     col = substr[substr.length - 1].length;
-    tmpstr += ' - (' + row.toString() + ',' + col.toString() + ')';
+    tmpstr += ` - (${row.toString()},${col.toString()})`;
   }
 }
 
 let input_changed = (obj_txt) => {
-  obj_rownr = obj_txt.parentElement.parentElement.getElementsByTagName('textarea')[0];
+  obj_rownr = obj_txt.parentElement.parentElement.getElementsByTagName('textarea'
+  )[0];
   cntline = count_lines(obj_txt.value);
   if (cntline == 0) cntline = 1;
   tmp_arr = obj_rownr.value.split('\n');
@@ -144,7 +163,7 @@ let count_lines = (txt) => {
     return 1;
 
   }
-  return txt.split('\n').length + 0;
+  return txt.split('\n').length + num_add;
 
 };
 
@@ -160,7 +179,7 @@ let set_theme = () => {
     document.getElementById("theme_check").checked = false;
     light_mode()
   }
-}
+};
 
 let dark_mode = () => {
   document.body.style.setProperty("--main", "#202020");
@@ -200,10 +219,38 @@ let check_theme = () => {
     }
   }
 };
+let check_diag = () => {
+  if (localStorage.getItem('diag') == null) {
+    localStorage.setItem('diag', 'off');
+    console.log('diag data not found creating!');
+    return allowed = 0;
+  }
+  else if (localStorage.getItem('diag') != null) {
+    console.log('diag data found!');
+    if (localStorage.getItem('diag') == "on") {
+      document.getElementById("confirm_check").checked = true;
+      return allowed = 1;
+    }
+    else if (localStorage.getItem('diag') == "off") {
+      document.getElementById("confirm_check").checked = false;
+      return allowed = 0;
+    }
+    }
+  };
+
 
 // global event
 
-
+let set_diag = () => {
+  if (localStorage.getItem("diag") == "off") {
+    localStorage.setItem("diag", "on");
+    return allowed = 1;
+  }
+  else if (localStorage.getItem("diag") == "on") {
+    localStorage.setItem("diag", "off");
+    return allowed = 0;
+  }
+};
 let colorit = () => {
   let red = document.getElementById('red').value;
   let green = document.getElementById('green').value;
@@ -212,4 +259,12 @@ let colorit = () => {
   console.log(rgb_col)
   document.getElementById('resultcp').style.background = rgb_col;
   document.getElementById('rgbres').value = rgb_col;
-};
+}
+
+let msg = (msge) => {
+  if (allowed == 1) {
+    alert(msge);
+  }
+  else if (allowed == 0) {} 
+}
+
