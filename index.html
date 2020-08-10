@@ -6,43 +6,42 @@
   <title>html editor</title>
   <link rel="shortcut icon" href="">
   <script src="./source/js/functions.js" charset="utf-8"></script>
-  <link rel="stylesheet" id="themex" href="./source/css/theme.css">
   <link rel="stylesheet" href="./source/css/index.css">
 </head>
 
-<body onload="runx();check_theme()">
+<body onload="startup()">
   <!-- top bar -->
   <div id="list-function">
-    <button onclick="copy()">Copy</button>
+    <button onclick="copy(content_area)">Copy</button>
     <button onclick="shwmen('loadmn')">Load</button>
     <button onclick="shwmen('savmn')">Save</button>
     <button onclick="shwmen('colorpicker')">Color Picker</button>
     <span style="float: right; display:block; width: 320px;">
       <button onclick="shwmen('settingsmen')" style="font-size: 15px;float:right; ">&#9881;</button>
-      <!-- settingsmen -->
-      <br>
-      <div id="settingsmen" style="text-align: center;">
+    <br>
+  <!-- settingsmen -->          
+      <div id="settingsmen" class="menu" style="text-align: center; height: auto; width: 300px; float: right; ">
         <button class="closebtn" onclick="hdemen('settingsmen')">&#10005;</button>
         <label class="switch">
           <input type="checkbox" id='theme_check' onchange="set_theme()">
           <span class="slider"></span>
         </label>
         <h3 style="padding: 30px 10px;">Light|Dark Mode</h3>
-        <!-- <br>
+        <br>
         <label class="switch">
-          <input type="checkbox" id='theme_check' onchange="set_theme()">
+          <input type="checkbox" id='confirm_check' onchange="set_diag()">
           <span class="slider"></span>
         </label>
-        <h3 style="padding: 30px 10px;">Light|Dark Mode</h3> -->
-    </span>
+        <h3 style="padding: 30px 10px;">Confirmation Dialogs</h3>
   </div>
   </div>
+  </span>
   <!-- file save menu -->
-  <div id="savmn">
+  <div id="savmn" class="menu">
     <button class="closebtn" onclick="hdemen('savmn')">&#10005;</button>
     <br>
-    <input id="inputFileNameToSaveAs"
-      style="text-Align:center;color:var(--text);background:transparent;border:0.5px solid #000; padding: 3px 5px; margin: 2px 4px;"
+    <input id="inputFileNameToSaveAs" type="text"
+      style="text-Align:center;color:var(--text);background:transparent; width:200px;padding: 2px 5px; margin: 2px 4px;"
       placeholder="File Name to save as">
     <br>
     <button
@@ -50,7 +49,7 @@
       class="bth" id="savebt" onclick="engine()">Save text to file </button>
   </div>
   <!-- file load menu  -->
-  <div id="loadmn">
+  <div id="loadmn" class="menu">
     <button class="closebtn" onclick="hdemen('loadmn')">&#10005;</button>
     <input type="file" id="fileToLoad" onchange="file_names()">
     <button style="width: 100%; height:29px; border: 2px transparent; font-size: 10px;margin: 0px 0px;" class="bth"
@@ -66,38 +65,32 @@
       id="green">
     <i>B</i><input type="range" class="rgbslid" style="background:blue;" min="0" onchange="colorit()" max="255"
       id="blue">
-    <input type="text" id="rgbres" value="rgb(0,0,0)" readonly style="width:100px;margin:10px 5px;  user-select:text">
+    <input type="text" id="rgbres" value="rgb(0,0,0)" onclick="copy('rgbres')" readonly style="border:0px solid transparent;width:100px;margin:10px 5px;  user-select:text">
     <span id="resultcp"></span>
   </div>
 <table>
     <!-- line counter -->
     <tr>
-
     <textarea id="nml" class="rownr" cols="1" value="1" readonly placeholder="1"></textarea>
     <!-- text box -->
     <textarea class="txt" onclick="selectionchanged(this)" onkeyup="keyup(this,event)" oninput="input_changed(this)"
       onscroll="scroll_changed(this)" id="Textarea" placeholder="//code here"></textarea>
     </tr>
     <tr>
-
     <!-- html preview -->
     <span id="hif" >
       <iframe name="targetCode" style="display: none;" id="targetCode"></iframe>
     </span>
   </tr>
   </table>
-    <!-- onload events -->
-    <script type="text/javascript">
-      window.onload = () => {
-        setTimeout(0.6);
-        clearTimeout();
-        check_theme()
-        run_auto()
-        document.getElementById("targetCode").style.display = "block";
-        document.getElementById("targetCode").style.zIndex = "1";
-        document.getElementById("hif").style.backgroundColor = "transparent";
-      }
-    </script>
 </body>
+<script>
+
+window.onload = () => {
+  setTimeout(0.6);
+  clearTimeout();
+  startup();
+}
+  </script>
 
 </html>
