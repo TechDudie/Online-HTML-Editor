@@ -1,4 +1,4 @@
-**html-code-editor updated to v0.7** 
+**html-code-editor updated to v0.8** 
 <br>
 **Features**
 <br>
@@ -12,8 +12,12 @@ _also designed with pc|smartphone in mind_
 <br>
 _Support Dark|Light mode_  
 <Br>
+
 **changelog**
- <br>
+_v 0.8 added dialog option in settings (off by default)_
+<br>
+_v 0.8 added better gui_
+<br>
  _v 0.7 major gui changes_
 <br>
 _added dark mode_
