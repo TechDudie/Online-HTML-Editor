@@ -35,7 +35,7 @@ _v(0.8) added better gui_
  _v(0.7) major gui changes_
 <br>
 →
-_ v(0.6)improved dark theme_
+_v(0.6)improved dark theme_
 <br>
 →
 _v(0.5)added dark mode_
