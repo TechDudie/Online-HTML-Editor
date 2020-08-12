@@ -26,22 +26,22 @@ _v(0.9) major gyu changes_
 _v(0.9)custom dialog_
 <br>
 →
-_v 0.8 added dialog option in settings (off by default)_
+_v(0.8) added dialog option in settings (off by default)_
 <br>
 →
-_v 0.8 added better gui_
+_v(0.8) added better gui_
 <br>
  →
- _v 0.7 major gui changes_
+ _v(0.7) major gui changes_
 <br>
 →
-_added dark mode_
+_ v(0.6)improved dark theme_
 <br>
 →
-_improved dark theme_
+_v(0.5)added dark mode_
 <br>
 →
-_increased time by 0.02s_                                                                                                                             
+_v(0.5)increased time by 0.02s_                                                                                                                             
 <br>
 →
-_added animation_                                                                          
+_v(0.4)added animation_                                                                          
