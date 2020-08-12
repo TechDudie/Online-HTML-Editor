@@ -2,15 +2,20 @@
 <br>
 **Features**👇
 <br>
-→_support html preview_
+→
+_support html preview_
 <br>
-→_support Load/Save file_
+→
+_support Load/Save file_
 <br>
-→_support copy to clipboard_
+→
+_support copy to clipboard_
 <br>
-→_also designed with pc|smartphone in mind_
+→
+_also designed with pc|smartphone in mind_
 <br>
-→_Support Dark|Light mode_  
+→
+_Support Dark|Light mode_  
 <Br>
 
 **changelog**👇
