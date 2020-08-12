@@ -1,9 +1,9 @@
 const content_area = "Textarea"; //dont change it , it will break the editor
 const num_add = 0;
 let startup = () => {
-    check_theme()
-    check_diag()
-    run_auto()
+    check_theme();
+    check_diag();
+    run();
     document.getElementById("targetCode").style.display = "block";
     document.getElementById("targetCode").style.zIndex = "1";
     document.getElementById("hif").style.backgroundColor = "transparent";
@@ -17,20 +17,15 @@ let run = () => {
   iframe.document.open();
   iframe.document.write(inputz);
   iframe.document.close();
-  return false;
-}
-
-let run_auto = () => {
-  run();
-  auts = setTimeout("run_auto()", 500);
-
+  auto = setTimeout("run()", 100);
+  return auto;
 }
 
 let copy = (idx) => {
   let datax = document.getElementById(idx);
   datax.select();
   document.execCommand("copy");
-  msg('coppied to clipboard')
+  msg('copyied to clipboard')
 }
 
 let engine = () => {
@@ -261,10 +256,42 @@ let colorit = () => {
   document.getElementById('rgbres').value = rgb_col;
 }
 
-let msg = (msge) => {
-  if (allowed == 1) {
-    alert(msge);
-  }
-  else if (allowed == 0) {} 
-}
 
+let msg = (txt) => {
+    if (allowed  == 1) {
+        doc = document;
+
+          if(doc.getElementById("message_container")) return;
+
+        let main_div = doc.getElementsByTagName("body")[0].appendChild(doc.createElement("div"));
+        main_div.id = "message_container";
+        main_div.style.height = doc.documentElement.scrollHeight + "px";
+
+        let msg_div = main_div.appendChild(doc.createElement("div"));
+        msg_div.id = "alertBox";
+        if(doc.all && !window.opera) msg_div.style.top = document.documentElement.scrollTop + "px";
+        msg_div.style.left = (doc.documentElement.scrollWidth - msg_div.offsetWidth)/2 + "px";
+        msg_div.style.visiblity="visible";
+
+
+
+          let msg = msg_div.appendChild(doc.createElement("p"));
+          msg.appendChild(doc.createTextNode(txt));
+          msg.innerHTML = txt;
+
+          close_btn = msg_div.appendChild(doc.createElement("button"));
+          close_btn.id = "closeBtn";
+          close_btn.appendChild(doc.createTextNode('ok'));
+          close_btn.href = "#";
+          close_btn.focus();
+          close_btn.onclick = function() { callout();return false; }
+
+          msg_div.style.display = "block";
+
+}
+   else if (allowed = 0) {
+
+   }
+};
+
+let callout = () => document.getElementsByTagName("body")[0].removeChild(document.getElementById("message_container"));
