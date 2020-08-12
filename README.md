@@ -18,21 +18,30 @@ _also designed with pc|smartphone in mind_
 _Support Dark|Light mode_  
 <Br>
 
-**changelog**👇
+**changelog**👇<br>
+→
 _v(0.9) major gyu changes_
 <br>
+→
 _v(0.9)custom dialog_
 <br>
+→
 _v 0.8 added dialog option in settings (off by default)_
 <br>
+→
 _v 0.8 added better gui_
 <br>
+ →
  _v 0.7 major gui changes_
 <br>
+→
 _added dark mode_
 <br>
+→
 _improved dark theme_
 <br>
+→
 _increased time by 0.02s_                                                                                                                             
 <br>
+→
 _added animation_                                                                          
