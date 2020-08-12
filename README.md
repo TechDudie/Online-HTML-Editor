@@ -1,4 +1,4 @@
-**html-code-editor updated to v0.8** 
+**html-code-editor updated to v0.9** 
 <br>
 **Features**
 <br>
@@ -14,6 +14,10 @@ _Support Dark|Light mode_
 <Br>
 
 **changelog**
+_v(0.9) major gyu changes_
+<br>
+_v(0.9)custom dialog_
+<br>
 _v 0.8 added dialog option in settings (off by default)_
 <br>
 _v 0.8 added better gui_
