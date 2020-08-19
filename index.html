@@ -1,96 +1,85 @@
 <html>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <title>html editor</title>
-  <link rel="shortcut icon" href="">
-  <script src="./source/js/functions.js" charset="utf-8"></script>
+  <script src="./source/js/functions.js"charset="utf-8"></script>
   <link rel="stylesheet" href="./source/css/index.css">
 </head>
 
-<body onload="startup()">
+<body onload="startup()" defaulttheme="dark">
   <!-- top bar -->
-  <div id="list-function">
-    <button onclick="copy(content_area)">Copy</button>
-    <button onclick="shwmen('loadmn')">Load</button>
-    <button onclick="shwmen('savmn')">Save</button>
-    <button onclick="shwmen('colorpicker')">Color Picker</button>
-    <span style="float: right; display:block; width: 320px;">
-      <button onclick="shwmen('settingsmen')" style="font-size: 15px;float:right; ">&#9881;</button>
-    <br>
-  <!-- settingsmen -->          
-      <div id="settingsmen" class="menu" style="text-align: center; height: auto; width: 300px; float: right; ">
-        <button class="closebtn" onclick="hdemen('settingsmen')">&#10005;</button>
-        <label class="switch">
-          <input type="checkbox" id='theme_check' onchange="set_theme()">
-          <span class="slider"></span>
-        </label>
-        <h3 style="padding: 30px 10px;">Light|Dark Mode</h3>
-        <br>
-        <label class="switch">
-          <input type="checkbox" id='confirm_check' onchange="set_diag()">
-          <span class="slider"></span>
-        </label>
-        <h3 style="padding: 30px 10px;">Confirmation Dialogs</h3>
+  <div id="togglevis" style="margin:0px 7px;">
+    <div id="listfunction" >
+      <button id="cpbtn" onclick="copy('Textarea')"></button>
+      <button onclick="load()" id="ldbtn" ></button>
+      <button id="svbtn" onclick="document.getElementById('savebt').click()"></button>
+      <button id="clpbtn"onclick="shwmen('colorpicker')" ></button>
+     
+
+      <span style=" display:inline-block; width: 300px margim">
+        <button onclick="shwmen('settingsmen')" id="setbtn"></button>
+        <!-- settingsmen -->
+        <div id="settingsmen" class="menu" style="text-align: center;  width: 300px;margin-top:20px;  ">
+          <input type="button" value="&#10005;" class="closebtn" onclick="hdemen('settingsmen')">
+          <label class="switch">
+            <input type="checkbox" id='theme_check' onchange="set_theme()">
+            <span class="slider"></span>
+          </label>
+          <h3 style="padding: 30px 10px;">Light|Dark Mode</h3>
+          <br>
+          <label class="switch">
+            <input type="checkbox" id='confirm_check' onchange="set_diag()">
+            <span class="slider"></span>
+          </label>
+          <h3 style="padding: 30px 10px;">Confirmation Dialogs</h3>
+        </div>
+    </div>
+    </span>
+    <div class="togglewrapper" style="padding:11px 0px">
+      <button onclick="shwmen('listfunction')" class="toggled" style="width:auto;" id="tglbtn"></button>
+    </div>
   </div>
-  </div>
-  </span>
-  <!-- file save menu -->
-  <div id="savmn" class="menu">
-    <button class="closebtn" onclick="hdemen('savmn')">&#10005;</button>
-    <br>
-    <input id="inputFileNameToSaveAs" type="text"
-      style="text-Align:center;color:var(--text);background:transparent; width:200px;padding: 2px 5px; margin: 2px 4px;"
-      placeholder="File Name to save as">
-    <br>
-    <button
-      style="width: 100%; height:33.3%; border: 2px solid transparent; font-size: 9px;margin: 0px 0px; padding: 7px 10px;"
-      class="bth" id="savebt" onclick="engine()">Save</button>
-  </div>
-  <!-- file load menu  -->
-  <div id="loadmn" class="menu">
-    <button class="closebtn" onclick="hdemen('loadmn')">&#10005;</button>
-    <input type="file" id="fileToLoad" onchange="file_names()">
-    <button style="width: 100%; height:29px; border: 2px transparent; font-size: 10px;margin: 0px 0px;" class="bth"
-      onclick="modules()" id="lsf">Load Selected File</button>
-  </div>
+
+
   <!-- color Picker -->
   <div id="colorpicker">
-    <button class="closebtn" onclick="hdemen('colorpicker')"> &#10005;</button>
+    <input type="button" value="&#10005;" class="closebtn" onclick="hdemen('colorpicker')">
     <br>
     <i>R</i><input type="range" class="rgbslid" style="background: red;" onchange="colorit()" min="0" max="255"
       id="red">
-    <i>G</i><input type="range" class="rgbslid" style="background: green;" onchange="colorit()" min="0" max="255"
-      id="green">
+    <i>G</i><input type="range" class="rgbslid" style="background: rgb(0, 172, 0);" onchange="colorit()" min="0"
+      max="255" id="green">
     <i>B</i><input type="range" class="rgbslid" style="background:blue;" min="0" onchange="colorit()" max="255"
       id="blue">
-    <input type="text" id="rgbres" value="rgb(0,0,0)" onclick="copy('rgbres')" readonly style="border:0px solid transparent;width:100px;margin:10px 5px;  user-select:text">
+    <input type="text" id="rgbres" value="rgb(0,0,0)" onclick="copy('rgbres')" readonly
+      style="border:0px solid transparent;width:100px;margin:10px 5px;  user-select:text">
     <span id="resultcp"></span>
   </div>
-<table>
+  <table style="position:fixed; height:96%; width: 100%;">
     <!-- line counter -->
-    <tr>
-    <textarea id="nml" class="rownr" cols="1" value="1" readonly placeholder="1"></textarea>
-    <!-- text box -->
-    <textarea class="txt" onclick="selectionchanged(this)" onkeyup="keyup(this,event)" oninput="input_changed(this)"
-      onscroll="scroll_changed(this)" id="Textarea" placeholder="//code here"></textarea>
+    <tr class="tabr">
+      <textarea id="nml" class="rownr" cols="1" value="1" readonly placeholder="1" wrap="logical" autocomplete="off"
+        spellcheck="false"></textarea>
+      <!-- text box -->
+      <textarea class="txt" onclick="selectionchanged(this)" onkeyup="keyup(this,event)" oninput="input_changed(this)"
+        onscroll="scroll_changed(this)" id="Textarea" placeholder="//code here" autocomplete="off"
+        spellcheck="false"></textarea>
     </tr>
-    <tr>
-    <!-- html preview -->
-    <span id="hif" >
-      <iframe name="targetCode" style="display: none;" id="targetCode"></iframe>
-    </span>
-  </tr>
+    <tr class="tabr" style="margin-top:10px !important;">
+      <!-- html preview -->
+      <span id="hif">
+        <iframe name="targetCode" style="display: none;" id="targetCode"></iframe>
+      </span>
+    </tr>
   </table>
+  <input type="file" id="fileToLoad" onchange="modules()" style="display: none;">
+  <input type="button" style="display:none;" class="bth" id="savebt" onclick="engine()">
 </body>
 <script>
-
-window.onload = () => {
-  setTimeout(0.6);
-  clearTimeout();
-  startup();
-}
-  </script>
+  window.onload = () => {
+    startup();
+  }
+</script>
 
 </html>
