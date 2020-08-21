@@ -65,7 +65,7 @@ button:hover {
   border-top: none;
   border-bottom: none;
   display: none;
-  
+
 
 }
 
@@ -100,11 +100,9 @@ table {
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background: var(--btnhov) !important;
-  
 }
 
 .menu {
-
   background: var(--dynam);
   border: 0.5px solid black;
   position: absolute;
@@ -180,19 +178,25 @@ table {
 }
 
 #togglevis {
-  
+
   position: absolute;
   z-index: 5;
-  width: 28px;
+  /* width: 28px; */
   border: 0.5px solid var(--main-alt);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
+li {
+  list-style-type: none;
+  margin:0px 0px;
+  padding:0px 0px;
+}
+
 #targetCode {
   margin: 0px 10px;
   height: 100%;
-  background: white
+  background:floralwhite;
     /* Don't change: */
   ;
   position: absolute;
@@ -206,7 +210,7 @@ table {
 
 
 #hif {
-  background-color: white;
+  background-color:floralwhite;
   position: absolute;
   z-index: 1;
   height: 98%;
@@ -223,8 +227,9 @@ table {
   padding-right: 12px;
   padding-left: 4px;
   resize: none;
+  font-weight:lighter;
   height: 98%;
-  width: 60px;
+  width: 68px; 
   font-size: 15px;
   font-family: mono;
   user-select: none;
@@ -325,24 +330,29 @@ input:checked+.slider:before {
 
 #colorpicker {
   display: none;
-  border: 0.5px solid black;
   background: var(--dynam);
   color: var(--text);
   width: 225px;
-  padding: 10px 10px;
+  padding: 8px 10px;
+  margin: 0px 30px;
   opacity: 0;
-  border-radius: 6px;
   user-select: none;
   animation-name: var(--anim);
   animation-duration: 0.3s;
   animation-iteration-count: 1;
   position: absolute;
-  z-index: 1;
-  float: right;
+  border: 0.5px solid var(--main-alt);
   animation-fill-mode: forwards;
   transition: 0.5s ease-in;
 }
-
+#rgbres {
+  background-color: transparent;
+  color:#c2c2c2;
+}
+#rgbres::selection {
+  background-color: transparent;
+  color:var(--text);
+}
 i {
   font-size: 12px;
   margin: 15px 0px;
@@ -354,7 +364,7 @@ i {
   -webkit-appearance: none;
   -moz-appearance: none;
   width: 70%;
-  height: 4px;
+  height: 2px;
   margin: 10px 15px;
   border: 1px solid transparent;
   border-radius: 7px;
@@ -383,6 +393,14 @@ input[type=text] {
   content: none;
   border-radius: 5px;
 
+}
+
+#settingsmen {
+  text-align: center;
+  width: 300px;
+  margin: 0px 30px;
+  padding:0px 3px;
+  border:0.5px solid var(--main-alt)
 }
 
 .tabr {
