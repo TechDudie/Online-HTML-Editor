@@ -1,8 +1,8 @@
 const content_area = "Textarea"; //dont change it , it will break the editor
 const num_add = 0;
 let startup = () => {
-    setTimeout(0.6);
-    clearTimeout();
+    data = setTimeout(0.6);
+    clearTimeout(data);
     check_theme();
     check_diag();
     setsvg();
@@ -14,10 +14,11 @@ let startup = () => {
 let run = () => {
   let inputz = document.getElementById(content_area).value;
   let iframe = document.getElementById('targetCode');
+ 
   iframe = (iframe.contentWindow) ? iframe.contentWindow : (iframe.contentDocument) ? iframe.contentDocument.document :
     iframe.contentDocument;
 
-  iframe.document.open();
+  iframe.document.open()
   iframe.document.write(inputz);
   iframe.document.close();
   auto = setTimeout("run()", 100);
@@ -36,6 +37,12 @@ let copy = (idx) => {
 
 let engine = () => {
   let get_text = document.getElementById(content_area).value;
+  if (get_text == ""){
+    msg('no content found ,saving it')
+  }
+  else if (get_text != "") {
+    msg('file saved')
+  }
   let get_textAsBlob = new Blob([get_text], {
     type: "text/plain"
   });
@@ -43,12 +50,6 @@ let engine = () => {
   fileName = "index.html";
   
 
-  if (get_text == ""){
-      msg('no content found , press ok or esc to save it')
-  }
-  else if (get_text != "") {
-    msg('file saved')
-  }
   let downloadLink = document.createElement("a");
   downloadLink.download = fileName;
   downloadLink.innerHTML = "Download File";
@@ -112,7 +113,7 @@ let selectionchanged = (obj) => {
   if (obj.selectionStart != obj.selectionEnd) {
     substr = obj.value.substring(obj.selectionStart, obj.selectionEnd).split('\n');
     row += substr.length - 1;
-    col = substr[substr.length - 1].length;https://www.youtube.com/watch?v=0hgwfPe9XZg
+    col = substr[substr.length - 1].length;
     tmpstr += ` - (${row.toString()},${col.toString()})`;
   }
 }
@@ -201,10 +202,8 @@ let light_mode = () => {
 let check_theme = () => {
   if (localStorage.getItem('theme') == null) {
     localStorage.setItem('theme', 'dark');
-    console.log('theme data not found creating!');
   }
   else if (localStorage.getItem('theme') != null) {
-    console.log('theme data found!');
     if (localStorage.getItem('theme') == "dark") {
       dark_mode()
       document.getElementById("theme_check").checked = false;
@@ -218,11 +217,9 @@ let check_theme = () => {
 let check_diag = () => {
   if (localStorage.getItem('diag') == null) {
     localStorage.setItem('diag', 'off');
-    console.log('diag data not found creating!');
     return allowed = 0;
   }
   else if (localStorage.getItem('diag') != null) {
-    console.log('diag data found!');
     if (localStorage.getItem('diag') == "on") {
       document.getElementById("confirm_check").checked = true;
       return allowed = 1;
@@ -231,8 +228,8 @@ let check_diag = () => {
       document.getElementById("confirm_check").checked = false;
       return allowed = 0;
     }
-    }
-  };
+  }
+};
 
 
 // global event
@@ -255,13 +252,13 @@ let colorit = () => {
   console.log(rgb_col)
   document.getElementById('resultcp').style.background = rgb_col;
   document.getElementById('rgbres').value = rgb_col;
+
 }
 
 
 let msg = (txt) => {
     if (allowed  == 1) {
         doc = document;
-
         if(doc.getElementById("message_container")) return;
 
         let main_div = doc.getElementsByTagName("body")[0].appendChild(doc.createElement("div"));
@@ -276,9 +273,10 @@ let msg = (txt) => {
 
 
 
-          let msg = msg_div.appendChild(doc.createElement("p"));
+          let msg = msg_div.appendChild(doc.createElement("h4"));
           msg.appendChild(doc.createTextNode(txt));
           msg.innerHTML = txt;
+          msg.style.padding = "10px 20px";
 
           close_btn = msg_div.appendChild(doc.createElement("input"));
           close_btn.setAttribute("type", "button");
@@ -305,7 +303,7 @@ let setsvg = () => {
 
   document.getElementById('clpbtn').innerHTML =  `<svg aria-hidden="true" focusable="false" data-prefix="fas" style="width:15px;" data-icon="palette" class="svg-inline--fa fa-palette fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M204.3 5C104.9 24.4 24.8 104.3 5.2 203.4c-37 187 131.7 326.4 258.8 306.7 41.2-6.4 61.4-54.6 42.5-91.7-23.1-45.4 9.9-98.4 60.9-98.4h79.7c35.8 0 64.8-29.6 64.9-65.3C511.5 97.1 368.1-26.9 204.3 5zM96 320c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm32-128c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128-64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32zm128 64c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"></path></svg>`
 
-  document.getElementById('setbtn').innerHTML = `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cog" class="svg-inline--fa fa-cog fa-w-16" role="img"style="width:14px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"></path></svg>`
+  document.getElementById('setbtn').innerHTML = `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cog" class="svg-inline--fa fa-cog fa-w-16" role="img"style="width:15px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"></path></svg>`
 
   document.getElementById('tglbtn').innerHTML = `<svg aria-hidden="true" style="width:13px;" focusable="false" data-prefix="fas" data-icon="chevron-circle-down" class="svg-inline--fa fa-chevron-circle-down fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM273 369.9l135.5-135.5c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L256 285.1 154.4 183.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L239 369.9c9.4 9.4 24.6 9.4 34 0z"></path></svg>`
 }
