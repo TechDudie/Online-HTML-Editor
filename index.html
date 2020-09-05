@@ -54,28 +54,24 @@
 
 
 
-  <table style="position:fixed; height:100%; width: 100%;">
+  <table >
     <!-- line counter -->
-    <tr class="tabr">
-      <textarea id="nml" class="rownr" cols="1" value="1" readonly placeholder="1" wrap="logical" autocomplete="off"
+    <tr class="outerregioneditor">
+      <span class="innerregioneditor2">
+      <textarea id="nml" class="linenumber" cols="1" value="1" readonly placeholder="1" wrap="logical" autocomplete="off"
         spellcheck="false"></textarea>
       <!-- text box -->
-      <textarea class="txt" onclick="selectionchanged(this)" onkeyup="keyup(this,event)" oninput="input_changed(this)"
+      <textarea class="txt" onclick="selectionchanged(this)"  onkeyup="keyup(this,event)" oninput="input_changed(this);run()"
         onscroll="scroll_changed(this)" id="Textarea" autocomplete="off" spellcheck="false"></textarea>
+      </span>
     </tr>
-    <tr class="tabr" style="margin-top:10px !important;">
-
-      <span id="hif">
+    <tr class="outerregioneditor" style="margin-top:10px !important;">
+      <span id="innerregioneditor">
         <iframe name="targetCode" style="display: none;" id="targetCode"></iframe>
       </span>
     </tr>
   </table>
   <input type="file" id="fileToLoad" onchange="modules()" style="display: none;">
 </body>
-<script>
-  window.onload = () => {
-    startup();
-  }
-</script>
 
 </html>

@@ -1,15 +1,22 @@
 const content_area = "Textarea"; //dont change it , it will break the editor
 const num_add = 0;
 let startup = () => {
-    data = setTimeout(0.6);
-    clearTimeout(data);
+
     check_theme();
     check_diag();
     setsvg();
-    run();
+    let iframe = document.getElementById('targetCode');
+ 
+    iframe = (iframe.contentWindow) ? iframe.contentWindow : (iframe.contentDocument) ? iframe.contentDocument.document :
+    iframe.contentDocument;
+
+    iframe.document.open()
+    iframe.document.write("");
+    iframe.document.close();
+
     document.getElementById("targetCode").style.display = "block";
     document.getElementById("targetCode").style.zIndex = "1";
-    document.getElementById("hif").style.backgroundColor = "transparent";
+    document.getElementById("innerregioneditor").style.backgroundColor = "transparent";
 };
 let run = () => {
   let inputz = document.getElementById(content_area).value;
@@ -21,8 +28,7 @@ let run = () => {
   iframe.document.open()
   iframe.document.write(inputz);
   iframe.document.close();
-  auto = setTimeout("run()", 100);
-  return auto;
+
 }
 
 let load = () => {
@@ -119,24 +125,24 @@ let selectionchanged = (obj) => {
 }
 
 let input_changed = (obj_txt) => {
-  obj_rownr = obj_txt.parentElement.parentElement.getElementsByTagName('textarea'
+  obj_linenumber = obj_txt.parentElement.parentElement.getElementsByTagName('textarea'
   )[0];
   cntline = count_lines(obj_txt.value);
   if (cntline == 0) cntline = 1;
-  tmp_arr = obj_rownr.value.split('\n');
+  tmp_arr = obj_linenumber.value.split('\n');
   cntline_old = parseInt(tmp_arr[tmp_arr.length - 1], 10);
   // if there was a change in line count
   if (cntline != cntline_old) {
-    obj_rownr.cols = cntline.toString().length; // new width of txt_rownr
-    populate_rownr(obj_rownr, cntline);
+    obj_linenumber.cols = cntline.toString().length; // new width of txt_linenumber
+    populate_linenumber(obj_linenumber, cntline);
     scroll_changed(obj_txt);
   }
   selectionchanged(obj_txt);
 }
 
 let scroll_changed = (obj_txt) => {
-  obj_rownr = obj_txt.parentElement.parentElement.getElementsByTagName('textarea')[0];
-  scrollsync(obj_txt, obj_rownr);
+  obj_linenumber = obj_txt.parentElement.parentElement.getElementsByTagName('textarea')[0];
+  scrollsync(obj_txt, obj_linenumber);
 }
 
 let scrollsync = (obj1, obj2) => {
@@ -144,7 +150,7 @@ let scrollsync = (obj1, obj2) => {
   obj2.scrollTop = obj1.scrollTop;
 }
 
-let populate_rownr = (obj, cntline) => {
+let populate_linenumber = (obj, cntline) => {
   tmpstr = '';
   for (i = 1; i <= cntline; i++) {
     tmpstr = tmpstr + i.toString() + '\n';
@@ -307,3 +313,7 @@ let setsvg = () => {
 
   document.getElementById('tglbtn').innerHTML = `<svg aria-hidden="true" style="width:13px;" focusable="false" data-prefix="fas" data-icon="chevron-circle-down" class="svg-inline--fa fa-chevron-circle-down fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM273 369.9l135.5-135.5c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L256 285.1 154.4 183.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L239 369.9c9.4 9.4 24.6 9.4 34 0z"></path></svg>`
 }
+
+  window.onload = () => {
+    startup();
+  }

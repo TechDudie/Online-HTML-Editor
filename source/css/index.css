@@ -209,15 +209,20 @@ li {
 
 
 
-#hif {
+#innerregioneditor {
   background-color:floralwhite;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   height: 98%;
-  width: 45%;
+  width: 43%;
+}
+.innerregioneditor2 {
+  /*position: fixed;*/
+  height: 98%;
+  width: 43%;
 }
 
-.rownr {
+.linenumber {
   overflow-y: hidden;
   background-color: var(--box);
   color: var(--text);
@@ -403,9 +408,9 @@ input[type=text] {
   border:0.5px solid var(--main-alt)
 }
 
-.tabr {
+.outerregioneditor {
   position: fixed;
-  width: 48%;
+  width: 100%;
   height: 100%;
 }
 
@@ -459,7 +464,7 @@ input[type=text] {
     margin-right: 0px;
   }
 
-  .tabr {
+  .outerregioneditor {
     width: 44%;
   }
 }
@@ -470,7 +475,7 @@ input[type=text] {
     margin-right: 0px;
   }
 
-  .tabr {
+  .outerregioneditor {
     width: 40% !important;
   }
 }
