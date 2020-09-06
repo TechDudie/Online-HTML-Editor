@@ -23,6 +23,7 @@ body {
   background: var(--main);
   color: var(--text);
   transition: 0.5s ease-in;
+  font-family: monospace;
 
 }
 
@@ -47,6 +48,7 @@ button {
   border: none;
   margin: 1px 2px;
   font-size: 15px;
+  font-family: monospace;
   user-select: none;
   padding: 5px 5px;
   transition: 0.5s ease-in;
@@ -144,6 +146,7 @@ table {
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   opacity: 0;
+  user-select: none;
   transition: 0.1s ease-in;
 }
 
@@ -198,28 +201,22 @@ li {
   height: 100%;
   background:floralwhite;
     /* Don't change: */
-  ;
-  position: absolute;
   width: 100%;
   border: none;
   display: block;
-
-
 }
-
-
 
 #innerregioneditor {
   background-color:floralwhite;
   position: fixed;
   z-index: 1;
-  height: 98%;
-  width: 43%;
+  height: 100%;
+  width: 46%;
 }
 .innerregioneditor2 {
   /*position: fixed;*/
-  height: 98%;
-  width: 43%;
+  height: 100%;
+  width: 46%;
 }
 
 .linenumber {
@@ -236,6 +233,7 @@ li {
   height: 98%;
   width: 68px; 
   font-size: 15px;
+  margin: 0px 0px !important;
   font-family: mono;
   user-select: none;
   border-left: none;
@@ -246,15 +244,14 @@ li {
 }
 
 .txt {
-  margin-right: 5px;
+  margin:0px 0px !important;
   z-index: 0;
   border: none;
   background: var(--box);
   /* Dont change:  */
   ;
-  width: 47%;
+  width: 43%;
   height: 98%;
-  margin-right: 10px;
   font-size: 15px;
   color: var(--text);
   resize: none;
@@ -378,7 +375,9 @@ i {
 .rgbslid[input=range]:focus {
   outline: none;
 }
-
+h3 {
+  user-select: none;
+}
 
 input[type=text] {
   background-color: var(--dynam);
@@ -410,7 +409,7 @@ input[type=text] {
 
 .outerregioneditor {
   position: fixed;
-  width: 100%;
+  width: 96%;
   height: 100%;
 }
 

@@ -1,77 +1,64 @@
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>html editor</title>
   <script src="./source/js/functions.js" charset="utf-8"></script>
   <link rel="stylesheet" href="./source/css/index.css">
 </head>
-
-<body onload="startup()">
+<body draggable="false">
   <!-- top bar -->
-  <div id="togglevis" style="margin:0px 20px;">
+  <div id="togglevis" style="margin:0px 20px;" draggable="false">
     <div id="listfunction">
       <!-- color Picker -->
       <div id="colorpicker">
-        <i>R</i><input type="range" class="rgbslid" style="background: red;" onchange="colorit()" min="0" max="255"
+        <i>R</i><input type="range" class="rgbslid" style="background: rgb(255,0,0);" onchange="colorit()" min="0" max="255"
           id="red">
-        <i>G</i><input type="range" class="rgbslid" style="background: rgb(0, 172, 0);" onchange="colorit()" min="0"
+        <i>G</i><input type="range" class="rgbslid" style="background: rgb(0, 255, 0);" onchange="colorit()" min="0"
           max="255" id="green">
-        <i>B</i><input type="range" class="rgbslid" style="background:blue;" min="0" onchange="colorit()" max="255"
+        <i>B</i><input type="range" class="rgbslid" style="background:rgb(0,0,255);" min="0" onchange="colorit()" max="255"
           id="blue">
-
         <span id="resultcp"> <input type="text" id="rgbres" value="rgb(0,0,0)" onclick="copy('rgbres')" readonly
             style="border:0px solid transparent;width:100px;margin:10px 5px;  user-select:text;"></span>
       </div>
         <!-- settingsmen -->
-
-      <div id="settingsmen" class="menu">
-        <label class="switch">
-          <input type="checkbox" id='theme_check' onchange="set_theme()">
-          <span class="slider"></span>
-        </label>
-        <h3 style="padding: 30px 10px;">Dark|Light<br>Mode
-        </h3>
+      <div id="settingsmen"  draggable="false" class="menu">
+        <h3 draggable="false">Themes</h3>
+        <button onclick="light_mode()" draggable="false" style="width: 80%;">Light</button>
+        <button onclick="dark_mode()" draggable="false" style="width: 80%;">Dark</button>
         <br>
-        <label class="switch">
+        <label class="switch" draggable="false">
           <input type="checkbox" id='confirm_check' onchange="set_diag()">
           <span class="slider"></span>
         </label>
-        <h3 style="padding: 30px 10px;">Confirmation<br>Dialogs</h3>
+        <h3 style="padding: 30px 10px;" draggable="false">Confirmation<br>Dialogs</h3>
       </div>
-      <li><button id="cpbtn" onclick="copy('Textarea')"></button></li>
-      <li><button onclick="load()" id="ldbtn"></button></li>
-      <li><button id="svbtn" onclick="engine()"></button></li>
-      <li><button id="clpbtn" onclick="shwmen('colorpicker')"></button></li>
-      <li><button onclick="shwmen('settingsmen')" id="setbtn"></button></li>
-
-
+      <li draggable="false"><button id="cpbtn" onclick="copy(content_area)"></button></li>
+      <li draggable="false"><button onclick="load()" id="ldbtn"></button></li>
+      <li draggable="false"><button id="svbtn" onclick="engine()"></button></li>
+      <li draggable="false"><button id="clpbtn" onclick="shwmen('colorpicker')"></button></li>
+      <li draggable="false"><button onclick="shwmen('settingsmen')" id="setbtn"></button></li>
     </div>
-    <div class="togglewrapper" style="padding:11px 0px">
+    <div class="togglewrapper" draggable="false" style="padding:11px 0px">
       <button onclick="shwmen('listfunction')" class="toggled" style="width:auto;" id="tglbtn"></button>
     </div>
   </div>
-
-
-
-  <table >
+  <table>
     <!-- line counter -->
-    <tr class="outerregioneditor">
-      <span class="innerregioneditor2">
-      <textarea id="nml" class="linenumber" cols="1" value="1" readonly placeholder="1" wrap="logical" autocomplete="off"
+    <tr class="outerregioneditor" draggable="false">
+      <span class="innerregioneditor2" draggable="false">
+      <textarea draggable="false" id="nml" class="linenumber" cols="1" value="1" readonly placeholder="1" wrap="logical" autocomplete="off"
         spellcheck="false"></textarea>
       <!-- text box -->
-      <textarea class="txt" onclick="selectionchanged(this)"  onkeyup="keyup(this,event)" oninput="input_changed(this);run()"
-        onscroll="scroll_changed(this)" id="Textarea" autocomplete="off" spellcheck="false"></textarea>
+      <textarea draggable="false"class="txt" onclick="selectionchanged(this)"  onkeyup="keyup(this,event)" oninput="input_changed(this);run()"
+        onscroll="scroll_changed(this)" id="editorbox" autocomplete="off" spellcheck="false"></textarea>
       </span>
     </tr>
-    <tr class="outerregioneditor" style="margin-top:10px !important;">
-      <span id="innerregioneditor">
-        <iframe name="targetCode" style="display: none;" id="targetCode"></iframe>
+    <tr class="outerregioneditor" draggable="false" style="margin-top:10px !important;">
+      <span draggable="false" id="innerregioneditor">
+        <iframe draggable="false" name="targetCode" style="display: none;" id="targetCode"></iframe>
       </span>
     </tr>
   </table>
-  <input type="file" id="fileToLoad" onchange="modules()" style="display: none;">
+  <input type="file" id="fileToLoad" draggable="false" onchange="modules()" style="display: none;">
 </body>
-
 </html>
