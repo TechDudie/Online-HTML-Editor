@@ -38,7 +38,7 @@ let load = () => {
 let copy = (element) => {
   let copy_data = document.getElementById(element).select();
   document.execCommand("copy");
-  msg('copyied to clipboard')
+  msg('Coppied to Clipboard')
 }
 
 let engine = () => {
@@ -270,12 +270,11 @@ let msg = (txt) => {
           let msg = msg_div.appendChild(doc.createElement("h4"));
           msg.appendChild(doc.createTextNode(txt));
           msg.innerHTML = txt;
-          msg.style.padding = "10px 20px";
+          msg.style.padding = "0px 15px";
 
-          close_btn = msg_div.appendChild(doc.createElement("input"));
-          close_btn.setAttribute("type", "button");
+          close_btn = msg_div.appendChild(doc.createElement("button"));
           close_btn.id = "closeBtn";
-          close_btn.value = "Ok";
+          close_btn.innerHTML = "&#10005;";
           close_btn.focus();
           close_btn.onclick = function() { callout();return false; }
 

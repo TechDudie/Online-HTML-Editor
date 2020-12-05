@@ -133,12 +133,12 @@ table {
 }
 
 #alertBox {
-  position: relative;
-  width: 300px;
-  min-height: 100px;
+  width: 290px;
+  height: 20px !important;
+  /* min-height: 100px; */
   margin-top: 50px;
   border: 1px solid transparent;
-  background-color: var(--main);
+  background-color: var(--dynam);
   background-repeat: no-repeat;
   background-position: 20px 30px;
   animation-name: var(--anim);
@@ -152,32 +152,32 @@ table {
 
 #message_container>#alertBox {
   position: fixed;
-  border-radius: 8px;
+  border: 1px solid var(--main);
 }
 
 
-#alertBox p {
-  font: 0.9em verdana, arial;
-  height: 50px;
+#alertBox h4 {
+  font-size: 8px;
   text-align: left;
-  margin-left: 15px;
-  margin-top: 30px;
+  margin: 4.3px;
+  float: left;
+  font-weight: lighter;
 }
 
 #alertBox #closeBtn {
   display: block;
-  position: relative;
-  margin: 5px 10px;
-  padding: 7px;
-  width: 70px;
-  font: 0.7em verdana, arial;
+  /* margin: 0px 2px; */
+  padding: 0px 2px;
+  font: 0.68em verdana, arial;
   text-transform: uppercase;
   text-align: center;
-  color: #FFF;
-  background-color: #357EBD;
-  border-radius: 3px;
+  color: lightgray;
+  background:transparent;
   text-decoration: none;
   float: right;
+}
+#closeBtn :hover{
+  background: red !important;
 }
 
 #togglevis {
@@ -264,15 +264,6 @@ li {
   display: none;
 }
 
-.closebtn {
-  float: left;
-  transition: 0.5s all ease-in;
-}
-
-.closebtn:hover {
-  background: red !important;
-  margin: 0px 0px !important;
-}
 
 /* The switch - the box around the slider */
 .switch {
