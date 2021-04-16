@@ -6,4 +6,6 @@
 
 ![HTML Editor](https://github.com/TechDudie/Online-HTML-Editor/blob/master/screenshot.jpg)
 
-If you want to use this editor online, go to: https://html.technologydev.repl.co
+If you want to use this editor online, go to:
+* [https://html.technologydev.repl.co](https://html.technologydev.repl.co)
+* [techdudie.github.io/Online-HTML-Editor](techdudie.github.io/Online-HTML-Editor)
