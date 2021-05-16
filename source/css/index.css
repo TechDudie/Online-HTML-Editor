@@ -232,6 +232,7 @@ li {
   font-weight:lighter;
   height: 98%;
   width: 68px; 
+  font-family: Ubuntu Mono;
   font-size: 15px;
   margin: 0px 0px !important;
   font-family: mono;
@@ -252,6 +253,7 @@ li {
   ;
   width: 43%;
   height: 98%;
+  font-family: Ubuntu Mono;
   font-size: 15px;
   color: var(--text);
   resize: none;
@@ -372,8 +374,9 @@ h3 {
 
 input[type=text] {
   background-color: var(--dynam);
-  border-radius: 1px;
+  border-radius: 0px;
   border-color: transparent;
+  font-family: Ubuntu Mono;
   font-size: 10px;
   color: var(--text);
   border: 1.5px solid var(--main-alt);
